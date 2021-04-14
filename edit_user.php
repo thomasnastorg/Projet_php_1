@@ -48,8 +48,12 @@ if ($action == "U"){
   $usr_tel = (isset($_POST["usr_tel"]))? $_POST["usr_tel"] : '';
 
   
-  $sql = " UPDATE `utilisateur` SET `usr_nom`='$usr_nom',`usr_prenom`='$usr_prenom',`usr_email`='$usr_email',`usr_login`='$usr_login',`usr_pass`='$usr_pass',`usr_dep`='$usr_dep',`usr_ville`='$usr_ville',`usr_tel`='$usr_tel', WHERE `usr_id`='$usr_id'";
- echo $sql;
+  $sql = " update utilisateur set usr_nom='$usr_nom' , usr_prenom='$usr_prenom',
+  usr_email='$usr_email' , usr_login='$usr_login',
+  usr_pass='$usr_pass', usr_dep='$usr_dep', usr_ville='$usr_ville', usr_tel='$usr_tel'
+  where usr_id = '$usr_id';
+"; 
+  echo $sql;
  echo $usr_id;
   
   $pdo->query($sql);
@@ -79,7 +83,7 @@ $tab = $res -> fetchAll(PDO::FETCH_ASSOC);
     <thead>
 		<form action="edit_user.php" method="post">
 		<input type="hidden" name="act" value="U"> 
-    <input type="hidden" name="usr_id" value="<?php $usr_id ; ?>"> 
+    <input type="hidden" name="usr_id" value="<?php echo $usr_id ; ?>"> 
     <td><input type="text" name="usr_nom" value="<?php echo $usr_nom ; ?>" placeholder="nom"></td>
 		<td><input type="text" name="usr_prenom" value="<?php echo $usr_prenom ; ?>" placeholder="prenom"></td>
 		<td><input type="text" name="usr_email" value="<?php echo $usr_email ; ?>" placeholder="email"></td>
